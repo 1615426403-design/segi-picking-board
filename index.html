@@ -107,7 +107,7 @@ body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI',syst
 </head>
 <body>
 <div class="mast"><h1><span class="mark"></span>SEGI · 站外配货 <a href="https://1615426403-design.github.io/segi-stockout-report/" target="_blank" style="display:inline-block;margin-left:8px;padding:3px 10px;background:#FF2E93;color:#fff;border-radius:5px;font-size:11px;font-weight:600;text-decoration:none;vertical-align:middle;">缺货SKU报告</a></h1>
-<div class="meta"><span>269 件欠货</span><span>28 款式</span><span>70 合并包裹</span><span>06-24 11:36</span></div></div>
+<div class="meta"><span>269 件欠货</span><span>28 款式</span><span>70 合并包裹</span><span>06-24 11:40</span></div></div>
 <div class="kpi-bar">
 <div class="kpi"><div class="num">28</div><div class="lbl">款式</div></div>
 <div class="kpi"><div class="num">269</div><div class="lbl">总件数</div></div>
@@ -127,8 +127,10 @@ function szC(s){var m={S:'oklch(55% 0.15 150)',M:'oklch(50% 0.14 250)',L:'oklch(
 function sD(sty){
 var od=window.ORD,ords=[];for(var i=0;i<od.length;i++){if(od[i].款式===sty)ords.push(od[i])}
 if(!ords.length)return;document.getElementById('mt').textContent=sty;
-var phs={};for(var i=0;i<ords.length;i++){var o=ords[i];var p=o.电话||'(\u65e0)';if(!phs[p])phs[p]=[];phs[p].push(o)}
-var si=[],co={};var pk=Object.keys(phs);for(var i=0;i<pk.length;i++){var ph=pk[i];var it=phs[ph];if(it.length>=2)co[ph]=it;else{for(var j=0;j<it.length;j++)si.push(it[j])}}
+// 全局统计每个电话的总订单数
+var phc={};for(var i=0;i<od.length;i++){var p=od[i].电话||'(\u65e0)';phc[p]=(phc[p]||0)+1}
+// 按全局电话出现次数分组
+var si=[],co={};for(var i=0;i<ords.length;i++){var o=ords[i];var p=o.电话||'(\u65e0)';if(phc[p]>=2){if(!co[p])co[p]=[];co[p].push(o)}else{si.push(o)}}
 var h='';h+='<div class="sg"><div class="sg-h"><span class="sg-t on" data-p="sgl">单件订单 <b>'+si.length+'</b></span>';h+='<span class="sg-t" data-p="cgl">合并订单 <b>'+Object.keys(co).length+'</b></span></div>';
 h+='<div class="sg-p on" id="sgl">';
 if(si.length){for(var i=0;i<si.length;i++){var o=si[i];var a=o.地址||'(无地址)';h+='<div class="si"><div class="si-1"><span class="si-n">'+(o.姓名||'?')+'</span><span class="si-p">'+o.电话+'</span><span style="background:'+szC(o.尺码)+';color:#fff;display:inline-block;padding:1px 8px;border-radius:4px;font-size:0.7rem;font-weight:700">'+o.尺码+'</span><span class="si-c">'+o.渠道+'</span></div><div class="si-2">'+a+'</div></div>'}}else h+='<div class="si-e">无单件订单</div>';
