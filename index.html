@@ -124,7 +124,7 @@ body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI',syst
 </head>
 <body>
 <div class="mast"><h1><span class="mark"></span>SEGI · 站外配货 <a href="https://1615426403-design.github.io/segi-stockout-report/" target="_blank" style="display:inline-block;margin-left:8px;padding:3px 10px;background:#FF2E93;color:#fff;border-radius:5px;font-size:11px;font-weight:600;text-decoration:none;vertical-align:middle;">缺货SKU报告</a></h1>
-<div class="meta"><span>224 件欠货</span><span>26 款式</span><span>48 合并包裹</span><span>06-24 15:19</span></div></div>
+<div class="meta"><span>224 件欠货</span><span>26 款式</span><span>48 合并包裹</span><span>06-24 15:22</span></div></div>
 <div class="kpi-bar">
 <div class="kpi"><div class="num">26</div><div class="lbl">款式</div></div>
 <div class="kpi"><div class="num">224</div><div class="lbl">总件数</div></div>
@@ -197,10 +197,9 @@ el.addEventListener('click',function(e){e.stopPropagation();var st=this.dataset.
 })})();
 // --- Reset stock ---
 function resetStock(){
-if(!confirm('确定重置所有库存和博主标记吗？'))return;
-localStorage.removeItem('segi_stk_v1');localStorage.removeItem('segi_bg_v1');
+if(!confirm('确定重置所有库存吗？博主标记不会受影响'))return;
+localStorage.removeItem('segi_stk_v1');
 document.querySelectorAll('.st-inp').forEach(function(inp){inp.value='';inp.classList.remove('filled')});
-document.querySelectorAll('.bg-opt').forEach(function(el){el.classList.remove('on-yes','on-no')});
 }
 // --- Export Excel ---
 function exportExcel(){
