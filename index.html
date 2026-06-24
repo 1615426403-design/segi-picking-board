@@ -117,7 +117,7 @@ body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI',syst
 </head>
 <body>
 <div class="mast"><h1><span class="mark"></span>SEGI · 站外配货 <a href="https://1615426403-design.github.io/segi-stockout-report/" target="_blank" style="display:inline-block;margin-left:8px;padding:3px 10px;background:#FF2E93;color:#fff;border-radius:5px;font-size:11px;font-weight:600;text-decoration:none;vertical-align:middle;">缺货SKU报告</a></h1>
-<div class="meta"><span>266 件欠货</span><span>28 款式</span><span>71 合并包裹</span><span>06-24 13:45</span></div></div>
+<div class="meta"><span>266 件欠货</span><span>28 款式</span><span>71 合并包裹</span><span>06-24 14:01</span></div></div>
 <div class="kpi-bar">
 <div class="kpi"><div class="num">28</div><div class="lbl">款式</div></div>
 <div class="kpi"><div class="num">266</div><div class="lbl">总件数</div></div>
@@ -226,11 +226,11 @@ var wb=XLSX.utils.book_new();
 var rows1=[[ '序号','姓名','电话','地址','款式+尺码','数量','渠道','类型' ]];var idx=0;
 allocMerged.forEach(function(g){
 idx++;var items=g.items;
-var desc=items.map(function(o,i){return i===0?o.渠道+' '+o.款式+' '+o.尺码:o.款式+' '+o.尺码}).join('·');
+var desc=items.map(function(o,i){return i===0?'博主 '+o.渠道+' '+o.款式+' '+o.尺码:o.款式+' '+o.尺码}).join('·');
 rows1.push([idx,items[0].姓名||'?',items[0].电话,items[0].地址,desc,items.length,items.map(function(o){return o.渠道}).filter(function(v,i,a){return a.indexOf(v)===i}).join(','),'合并']);
 });
 allocSingle.forEach(function(o){
-idx++;rows1.push([idx,o.姓名||'?',o.电话,o.地址,o.渠道+' '+o.款式+' '+o.尺码,1,o.渠道,'单件']);
+idx++;rows1.push([idx,o.姓名||'?',o.电话,o.地址,'博主 '+o.渠道+' '+o.款式+' '+o.尺码,1,o.渠道,'单件']);
 });
 var ws1=XLSX.utils.aoa_to_sheet(rows1);
 ws1['!cols']=[{wch:5},{wch:10},{wch:14},{wch:35},{wch:45},{wch:6},{wch:8},{wch:6}];
